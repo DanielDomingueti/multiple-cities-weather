@@ -34,10 +34,11 @@ public class WeatherController {
 		
 		List<String> responses = new ArrayList<>();
 				
+		responses.add(rest.getForEntity("http://api.weatherstack.com/current?access_key=d98f62b2d1b173bdaf5d0075378d27dc&query=Braganca, Portugal", String.class).getBody());
+		
 		for (String x : cities) {
 			responses.add(rest.getForEntity(url + x, String.class).getBody());
 		}
-		responses.add(rest.getForEntity("http://api.weatherstack.com/current?access_key=d98f62b2d1b173bdaf5d0075378d27dc&query=Braganca, Portugal", String.class).getBody());
 		
 		List<DataResponse> responsesDatas = new ArrayList<>();
 		for (String response : responses) {
