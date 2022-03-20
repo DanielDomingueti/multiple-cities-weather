@@ -14,11 +14,17 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DataResponse {
 	
 	private Location location;
 	private Current current;
+	
+	@Override
+	public String toString() {
+		return "Local: " + location.getName() + ", " + location.getCountry() + " - Temperatura atual: " + current.getTemperature() + "\u00B0" + "C -- Horário: " + current.getObservation_time();
+	}
+	
+	
 
 }

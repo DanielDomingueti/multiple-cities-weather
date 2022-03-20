@@ -30,7 +30,7 @@ public class WeatherController {
 
 
 	@GetMapping(value = "{cities}")
-	public ResponseEntity<List<DataResponse>> getWeather(@PathVariable("cities") String[] cities) throws JsonMappingException, JsonProcessingException {
+	public ResponseEntity<List<String>> getWeather(@PathVariable("cities") String[] cities) throws JsonMappingException, JsonProcessingException {
 		
 		List<String> responses = new ArrayList<>();
 				
@@ -40,9 +40,9 @@ public class WeatherController {
 			responses.add(rest.getForEntity(url + x, String.class).getBody());
 		}
 		
-		List<DataResponse> responsesDatas = new ArrayList<>();
+		List<String> responsesDatas = new ArrayList<>();
 		for (String response : responses) {
-			responsesDatas.add(mapper.readValue(response, DataResponse.class));
+			responsesDatas.add(mapper.readValue(response, DataResponse.class).toString());
 		}
 		
 		return ResponseEntity.ok().body(responsesDatas);
