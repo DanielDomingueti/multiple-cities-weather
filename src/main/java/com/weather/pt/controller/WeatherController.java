@@ -43,6 +43,7 @@ public class WeatherController {
 		List<String> responsesDatas = new ArrayList<>();
 		for (String response : responses) {
 			responsesDatas.add(mapper.readValue(response, DataResponse.class).toString());
+			responsesDatas.add("");
 		}
 		
 		return ResponseEntity.ok().body(responsesDatas);
